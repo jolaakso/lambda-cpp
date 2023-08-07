@@ -66,6 +66,9 @@ int LambdaFunc::getType() {
 LambdaApply::LambdaApply(std::unique_ptr<LambdaElem> func, std::unique_ptr<LambdaElem> arg) noexcept : func(std::move(func)), arg(std::move(arg)) {}; 
 
 std::unique_ptr<LambdaElem> LambdaApply::eval() {
+    if (func->getType() == LAMBDA_NAME) {
+        return std::make_unique<LambdaApply>(std::move(func), std::move(arg->eval()));
+    }
     return func->eval()->apply(arg->eval());
 }
 

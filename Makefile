@@ -1,10 +1,10 @@
-CC = g++
+CXX = g++
 
 main: root.o
-	$(CC) *.cpp
+	$(CXX) *.cpp -o lambdaint
 
 %.o:
-	$(CC) -c *.cpp
+	$(CXX) -c *.cpp
 
 clean:
 	rm *.o
